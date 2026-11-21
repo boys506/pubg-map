@@ -1,0 +1,47 @@
+name: Release APK
+
+# 推 v* 标签时自动建 Release 并上传 APK；也可在 Actions 页面手动触发
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '发布标签（例如 v1.0.0）'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 解析版本号
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "发布标签: $TAG"
+
+      - name: 检查 APK
+        run: |
+          ls -lh dist/*.apk
+          sha256sum dist/*.apk
+
+      - name: 创建 Release 并上传 APK
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.ver.outputs.tag }}" \
+            dist/PUBG-OfflineMap-1.0.apk \
+            --title "PUBG 战术地图 · 离线版 ${{ steps.ver.outputs.tag }}" \
+            --notes-file .github/RELEASE_NOTES.md \
+            --verify-tag
