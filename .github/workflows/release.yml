@@ -1,6 +1,6 @@
 name: Release APK
 
-# 推 v* 标签时自动建 Release 并上传 APK；也可在 Actions 页面手动触发
+# 推 v* 标签时创建 Release；仓库内有 APK 就自动上传，没有则建草稿等你手动附加
 on:
   push:
     tags:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: '发布标签（例如 v1.0.0）'
+        description: '发布标签（例如 v1.0.1）'
         required: true
 
 permissions:
@@ -31,17 +31,22 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "发布标签: $TAG"
 
-      - name: 检查 APK
-        run: |
-          ls -lh dist/*.apk
-          sha256sum dist/*.apk
-
-      - name: 创建 Release 并上传 APK
+      - name: 创建 Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ steps.ver.outputs.tag }}" \
-            dist/*.apk \
-            --title "PUBG 战术地图 · 离线版 ${{ steps.ver.outputs.tag }}" \
-            --notes-file .github/RELEASE_NOTES.md \
-            --verify-tag
+          TAG="${{ steps.ver.outputs.tag }}"
+          TITLE="PUBG 战术地图 · 离线版 $TAG"
+          # APK 不入库（只在 Release 里存），所以仓库内通常没有安装包
+          if ls dist/*.apk >/dev/null 2>&1; then
+            echo "检测到仓库内 APK，直接发布"
+            sha256sum dist/*.apk
+            gh release create "$TAG" dist/*.apk \
+              --title "$TITLE" --notes-file .github/RELEASE_NOTES.md --verify-tag
+          else
+            echo "仓库内没有 APK，创建草稿"
+            gh release create "$TAG" \
+              --title "$TITLE" --notes-file .github/RELEASE_NOTES.md \
+              --draft --verify-tag
+            echo "::notice::已创建草稿 Release，请到 Release 页面附加 dist/PUBG-*.apk 后点 Publish"
+          fi

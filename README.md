@@ -8,7 +8,7 @@
 ## 产物
 
 - **[下载 APK（Releases）](https://github.com/boys506/pubg-map/releases/latest)** — 40.7 MB，签名可直装（Android 7.0+，不需要任何网络权限）
-- 源码里也放了一份：`dist/PUBG-OfflineMap-1.0.apk`
+- APK 只存在 Release 里，**不入库**（仓库本体约 500 KB，clone 很轻）
 
 ## 界面
 
@@ -62,7 +62,7 @@ build/
 capture/             抓包脚本（puppeteer-core + 系统 Edge）
   getpoints.js       拉取各图各类型点位
   decall.js          AES-256-GCM + raw deflate 解密点位
-dist/                最终 APK
+dist/                本地构建产物（APK 不入库，已 gitignore）
 ```
 
 ## 从源码重建
@@ -88,10 +88,18 @@ bash build/build_apk.sh                             # 重新出包
 
 ## 发版
 
-推 `v*` 标签会自动创建 Release 并上传 APK（`.github/workflows/release.yml`，用内置 `GITHUB_TOKEN`，无需配置 secret）：
+APK 不入库，只放在 Release 里。推 `v*` 标签会触发 `.github/workflows/release.yml`（内置 `GITHUB_TOKEN`，无需配置 secret）：
 
 ```bash
+bash build/build_apk.sh                              # 先出包到 dist/
 git tag -a v1.0.1 -m "v1.0.1" && git push origin v1.0.1
+```
+
+因为仓库里没有 APK，Action 会建一个**草稿 Release**。到 Releases 页面点开草稿，把 `dist/PUBG-OfflineMap-*.apk` 拖进附件区，再点 Publish。
+不想开浏览器也可以直接命令行补传：
+
+```bash
+gh release upload v1.0.1 dist/PUBG-OfflineMap-1.0.apk
 ```
 
 发版说明改 `.github/RELEASE_NOTES.md`。

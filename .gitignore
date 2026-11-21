@@ -9,6 +9,8 @@ android/assets/
 android/classes/
 android/dex/
 android/gen/
+# ---------- APK 只发 Release，不入库 ----------
+dist/*.apk
 *.idsig
 
 # ---------- 抓包临时数据 ----------
