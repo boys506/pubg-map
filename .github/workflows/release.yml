@@ -41,7 +41,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${{ steps.ver.outputs.tag }}" \
-            dist/PUBG-OfflineMap-1.0.apk \
+            dist/*.apk \
             --title "PUBG 战术地图 · 离线版 ${{ steps.ver.outputs.tag }}" \
             --notes-file .github/RELEASE_NOTES.md \
             --verify-tag
