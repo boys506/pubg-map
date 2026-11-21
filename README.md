@@ -1,111 +1,121 @@
+<div align="center">
+
 # PUBG 战术地图 · 离线版
 
-[![Release](https://img.shields.io/github/v/release/boys506/pubg-map?color=orange&label=release)](https://github.com/boys506/pubg-map/releases/latest)
-[![Download](https://img.shields.io/badge/download-APK%2040.7MB-brightgreen)](https://github.com/boys506/pubg-map/releases/latest/download/PUBG-OfflineMap-1.0.apk)
+**把 PUBG 的十张地图装进手机：测距、点位、迫击炮解算，断网也能用。**
 
-把 [pubg.plus](https://pubg.plus/zh-CN/map) 的**地图测距**和**地图点位**功能做成了一台手机可以完全离线使用的 APK。
+[![下载 APK](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD%20APK-40.7%20MB-2ea44f?style=for-the-badge&logo=android&logoColor=white)](https://github.com/boys506/pubg-map/releases/latest/download/PUBG-OfflineMap-1.0.apk)
+[![Release](https://img.shields.io/github/v/release/boys506/pubg-map?style=for-the-badge&label=release&color=orange)](https://github.com/boys506/pubg-map/releases/latest)
 
-## 产物
+![Android](https://img.shields.io/badge/Android-7.0%2B-3DDC84?logo=android&logoColor=white)
+![Offline](https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF-0%20%E7%BD%91%E7%BB%9C%E6%9D%83%E9%99%90-critical)
+![Tiles](https://img.shields.io/badge/%E7%93%A6%E7%89%87-3400%20%E5%BC%A0-informational)
+![POI](https://img.shields.io/badge/%E7%82%B9%E4%BD%8D-6522%20%E4%B8%AA-informational)
 
-- **[下载 APK（Releases）](https://github.com/boys506/pubg-map/releases/latest)** — 40.7 MB，签名可直装（Android 7.0+，不需要任何网络权限）
-- APK 只存在 Release 里，**不入库**（仓库本体约 500 KB，clone 很轻）
+</div>
 
-## 界面
+<div align="center">
+  <img src="docs/screenshots/01-map.jpg" width="23%" alt="地图与点位" />
+  <img src="docs/screenshots/02-measure.jpg" width="23%" alt="测距" />
+  <img src="docs/screenshots/03-types.jpg" width="23%" alt="点位筛选" />
+  <img src="docs/screenshots/04-mortar.jpg" width="23%" alt="迫击炮解算" />
+</div>
 
-| 地图 + 点位 | 测距 |
-| :---: | :---: |
-| ![地图](docs/screenshots/01-map.jpg) | ![测距](docs/screenshots/02-measure.jpg) |
-| **点位筛选** | **迫击炮解算** |
-| ![点位筛选](docs/screenshots/03-types.jpg) | ![迫击炮](docs/screenshots/04-mortar.jpg) |
+## 这是什么
 
-## 安装
+[pubg.plus](https://pubg.plus/zh-CN/map) 的网页版地图好用，但**跳伞落地前那几秒没有网络**，比赛中途切后台也会掉线。这个 APK 把它最实用的两个功能抽出来做成了完全离线的本地应用：
 
-1. 把 APK 传到手机（微信/QQ 传输、数据线、网盘均可）。
-2. 点击安装，系统提示"未知来源"时允许即可。
-3. 首次打开即用，之后飞行模式下也能正常查看地图与点位。
+- 十张地图的瓦片、37 类点位坐标全部打包进安装包，**应用不申请任何网络权限**，飞行模式下照常打开
+- 界面不是套壳网页，而是自己写的 Canvas 瓦片引擎，滑动缩放跟原生一样跟手
+- 安装包 40.7 MB，Android 7.0 以上直接装
 
 ## 功能
 
-| 功能 | 说明 |
-| --- | --- |
-| 离线地图 | 10 张地图（艾伦格 / 米拉玛 / 泰戈 / 帝斯顿 / 荣都 / 维寒迪 / 萨诺 / 帕拉莫 / 卡拉金 / 褐湾），1–4 级瓦片共 3400 张，全部打包在 APK 内 |
-| 测距 | 「测距」模式点地图打点，实时显示分段距离与总距离；测距点可拖动微调，支持撤销/清空 |
-| 点位查询 | 密室、载具、加油站、自助贩卖机、金库、可破坏坛子、气罐、滑翔机等 37 类点位，按地图给出实际存在的类型与数量，可逐类开关，支持筛选预设 |
-| 迫击炮计算 | 按 PUBG 弹道模型（最大水平射程 700 m）解算：填高差 → 输出密位 R 与仰角 θ |
-| 辅助 | 1 km 网格、比例尺、光标坐标、点位详情（坐标 + 类型标签） |
+| | 功能 | 说明 |
+| :---: | --- | --- |
+| **地图** | 十张地图离线浏览 | 艾伦格 / 米拉玛 / 萨诺 / 维寒迪 / 卡拉金 / 帕拉莫 / 褐湾 / 泰戈 / 帝斯顿 / 荣都，1–4 级瓦片共 3400 张 |
+| **测距** | 多点折线测量 | 点地图打点，每段距离实时标在线上，底部显示总距离；顶点可拖动微调，支持撤销 / 清空 |
+| **点位** | 分类查询与开关 | 密室、载具、加油站、自助贩卖机、金库、可破坏坛子、气罐、滑翔机等 37 类，按地图给出实际存在的类型与数量，可逐类开关 |
+| **迫击炮** | 密位与仰角解算 | 按游戏弹道模型（最大水平射程 700 m）解算，填高差即得密位 R 与仰角 θ |
+| **辅助** | 网格 / 比例尺 / 坐标 | 1 km 网格、动态比例尺、光标处坐标、点位详情（类型 + 坐标 + 标签） |
 
-## 与网页版的差异
+## 安装
 
-- 迫击炮解算需要**手动填高差**：网页版用的是站点自己的地形高度数据，离线包里没有打包高程数据。
-- 未包含蓝圈自定义 / 渡轮火车模拟 / 2D 回放，这些属于网页版其它模块。
-- 地图最高放大到 4 级瓦片（约 2 m/像素），再放大是像素插值。
+1. 手机下载上面的 **下载 APK**（40.7 MB）
+2. 点击安装，系统提示「未知来源」时允许
+3. 打开即用，无需登录、无需联网
 
-## 数据来源与版权
+> 如果打开是白屏，多半是系统 WebView 版本过旧，去应用商店更新「Android System WebView」即可。
 
-- 地图瓦片、点位数据抓取自 **PUBG.PLUS**，站点要求转载时署名，APK 内已保留「点位数据 © PUBG.PLUS」标识与关于页说明。
-- 地图与游戏素材版权归 KRAFTON / PUBG 所有，本工具仅供个人离线查看，非官方产品。
+## 与网页版的差别
 
-## 目录结构
+| | 网页版 | 本应用 |
+| --- | --- | --- |
+| 网络 | 需要联网 | **完全离线**，无网络权限 |
+| 迫击炮高差 | 自动读地形高程 | **需手动填写**（离线包不含高程数据） |
+| 最大放大 | 可继续放大 | 4 级瓦片上限，约 2 m/像素，再放大为插值 |
+| 其它模块 | 蓝圈自定义、渡轮火车、2D 回放 | 未包含，只做测距与点位 |
+
+## 数据是怎么来的
+
+网页版没有开放数据接口，所以做了三件事：
+
+1. **瓦片**：摸出地址规则 `assets/map/<地图>/<z>_<x>_<y>.jpg`（256 px），十张地图 1–4 级共 3400 张，48 MB
+2. **点位**：接口返回的是 `base64(iv | AES-256-GCM 密文)`，密钥由前端包内常量拼出，解出后还要过一次 raw deflate。最终得到 9 张地图、37 类、6522 个坐标
+3. **坐标**：还原出归一化体系 `x = p1 / 256`、`y = -p0 / 256`，地图跨度 = 地图边长（米）
+
+迫击炮公式也一并校验过：站点里的 `M = 700` 是最大射程而非初速，用实测案例 460 m 水平 / +118 m 高差代入，得到 **519 密位**，与玩家实战打中的数字一致。
+
+<details>
+<summary><b>更新点位数据（进阶）</b></summary>
+
+```bash
+cd capture && node getpoints.js && node decall.js   # 重新抓取并解密点位
+cd .. && python build/build_data.py                 # 生成 app/data/data.js
+bash build/build_apk.sh                             # 重新出包
+```
+
+接口：`GET https://apiv1.pubg.plus/map/points?map=<地图>&type=<类型>`，解密链路见 `capture/decall.js`。
+
+</details>
+
+## 项目结构
 
 ```
-app/                 网页版应用（可直接用浏览器打开调试）
+app/                 应用本体（浏览器直接打开即可调试）
   index.html
   css/app.css
-  js/app.js          Canvas 地图引擎 + 测距 + 点位渲染
+  js/app.js          Canvas 瓦片引擎 + 测距 + 点位渲染
   data/data.js       点位与地图元数据（含 37 类图标 SVG）
 android/             Android 工程（WebView 容器，无网络权限）
 build/
   get_tiles.py       瓦片下载（assets-esa 节点最快）
   build_data.py      抓取结果 → app/data/data.js
   build_apk.sh       一键出包（aapt2 → javac → d8 → zipalign → apksigner）
-  tiles/             瓦片原始文件（不入库，按需下载）
 capture/             抓包脚本（puppeteer-core + 系统 Edge）
-  getpoints.js       拉取各图各类型点位
-  decall.js          AES-256-GCM + raw deflate 解密点位
-dist/                本地构建产物（APK 不入库，已 gitignore）
+dist/                构建产物
 ```
 
-## 从源码重建
+<details>
+<summary><b>自己构建</b></summary>
 
-仓库不含瓦片、Android SDK、node_modules 等大文件，只放源码与成品 APK。想自己重新出包：
+不包含瓦片、Android SDK、node_modules 等大文件，需要先下载素材：
 
 ```bash
-python build/get_tiles.py build/tiles Erangel 1 4   # 逐张地图下载瓦片
-bash build/build_apk.sh                             # 需要 JDK 17+ 与 Android build-tools
+python build/get_tiles.py build/tiles Erangel 1 4   # 逐张地图下载 1–4 级瓦片
+bash build/build_apk.sh                             # 需 JDK 17+ 与 Android build-tools
 ```
 
-## 更新点位数据
-
-点位走接口 `GET https://apiv1.pubg.plus/map/points?map=<地图>&type=<类型>`，返回体是
-`base64(iv|AES-256-GCM密文)`，密钥 = `SHA-256(Ve)`，`Ve` 由前端包内常量拼出，
-解出后还要做一次 raw deflate。`capture/decall.js` 已实现完整链路。
-
-```bash
-cd capture && node getpoints.js && node decall.js   # 重新抓取并解密
-cd .. && python build/build_data.py                 # 生成 data.js
-bash build/build_apk.sh                             # 重新出包
-```
-
-## 发版
-
-APK 不入库，只放在 Release 里。推 `v*` 标签会触发 `.github/workflows/release.yml`（内置 `GITHUB_TOKEN`，无需配置 secret）：
-
-```bash
-bash build/build_apk.sh                              # 先出包到 dist/
-git tag -a v1.0.1 -m "v1.0.1" && git push origin v1.0.1
-```
-
-因为仓库里没有 APK，Action 会建一个**草稿 Release**。到 Releases 页面点开草稿，把 `dist/PUBG-OfflineMap-*.apk` 拖进附件区，再点 Publish。
-不想开浏览器也可以直接命令行补传：
-
-```bash
-gh release upload v1.0.1 dist/PUBG-OfflineMap-1.0.apk
-```
-
-发版说明改 `.github/RELEASE_NOTES.md`。
+</details>
 
 ## 已知限制
 
-- 瓦片和点位是 2026-11-21 的快照，游戏版本更新后点位可能变化。
-- 迫击炮最高只能算 700 m 内的目标，超出会提示"超过最大射程"（与游戏一致）。
-- 未在真机验证安装（本地无 Android 设备/模拟器），如遇到白屏请反馈，多为 WebView 版本过旧。
+- 瓦片与点位是 **2026-11-21 的快照**，游戏版本更新后点位可能有出入
+- 迫击炮只解算 700 m 内目标，超出提示「超过最大射程」（与游戏一致）
+- 未在真机验证安装（开发机无 Android 设备），异常欢迎提 issue
+
+## 版权与致谢
+
+- 地图瓦片、点位数据来自 **[PUBG.PLUS](https://pubg.plus)**，按要求保留署名（APK 内关于页亦有说明）
+- 地图与游戏素材版权归 **KRAFTON / PUBG** 所有
+- 本项目为个人离线查看工具，非官方产品，请勿用于商业用途
