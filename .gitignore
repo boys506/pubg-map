@@ -1,0 +1,31 @@
+# ---------- 构建产物 / 体积大户 ----------
+build/android-sdk/
+build/sdk-tmp/
+build/cmdtools.zip
+build/tiles/
+app/tiles/
+build/tiles_test/
+android/assets/
+android/classes/
+android/dex/
+android/gen/
+*.idsig
+
+# ---------- 抓包临时数据 ----------
+capture/node_modules/
+capture/raw/
+capture/points_raw/
+capture/seen.json
+capture/meta.json
+capture/*.png
+probe/
+page.html
+
+# ---------- 中间截图 ----------
+shots/
+
+# ---------- 系统 / 编辑器 ----------
+.workbuddy/
+.DS_Store
+Thumbs.db
+*.log
