@@ -1,10 +1,14 @@
 # PUBG 战术地图 · 离线版
 
+[![Release](https://img.shields.io/github/v/release/boys506/pubg-map?color=orange&label=release)](https://github.com/boys506/pubg-map/releases/latest)
+[![Download](https://img.shields.io/badge/download-APK%2040.7MB-brightgreen)](https://github.com/boys506/pubg-map/releases/latest/download/PUBG-OfflineMap-1.0.apk)
+
 把 [pubg.plus](https://pubg.plus/zh-CN/map) 的**地图测距**和**地图点位**功能做成了一台手机可以完全离线使用的 APK。
 
 ## 产物
 
-- `dist/PUBG-OfflineMap-1.0.apk` — 41 MB，签名可直装（Android 7.0+，不需要任何网络权限）
+- **[下载 APK（Releases）](https://github.com/boys506/pubg-map/releases/latest)** — 40.7 MB，签名可直装（Android 7.0+，不需要任何网络权限）
+- 源码里也放了一份：`dist/PUBG-OfflineMap-1.0.apk`
 
 ## 界面
 
@@ -81,6 +85,16 @@ cd capture && node getpoints.js && node decall.js   # 重新抓取并解密
 cd .. && python build/build_data.py                 # 生成 data.js
 bash build/build_apk.sh                             # 重新出包
 ```
+
+## 发版
+
+推 `v*` 标签会自动创建 Release 并上传 APK（`.github/workflows/release.yml`，用内置 `GITHUB_TOKEN`，无需配置 secret）：
+
+```bash
+git tag -a v1.0.1 -m "v1.0.1" && git push origin v1.0.1
+```
+
+发版说明改 `.github/RELEASE_NOTES.md`。
 
 ## 已知限制
 
